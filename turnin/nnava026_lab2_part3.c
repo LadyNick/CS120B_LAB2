@@ -35,7 +35,7 @@ while(1) {
 		cntavail = cntavail & ~(0x01 << 5);
 		cntavail = cntavail & ~(0x01 << 6);
 	
-		if(cntavail == 0x04){
+		if(cntavail == 0x00){
 			cntavail = (cntavail | 0x01 << 7); 
 		}	
 		
