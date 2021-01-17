@@ -17,29 +17,26 @@
 
 
 tests = [
-    {'description': 'PINA: 0x01 => PORTC: 0x01',
-    'steps': [ {'inputs': [('PINA',0x01) ], 'iterations': 5 } ],
-    'expected': [('PORTC',0x01)],
+    {'description': '10 20 30',
+     'steps': [{'inputs': [('PINA', 0x0A)], 'iterations':5 },
+	{'inputs': [('PINB', 0x14)], 'iterations': 5},
+	{'inputs': [('PINC', 0x1E)], 'iterations': 5} ],
+	'expected': [('PORTD', 0xF0)],
     },
-    {'description': 'PINA: 0x03 => PORTC: 0x02',
-    'steps': [ {'inputs': [('PINA',0x03)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x02)],
+    {'description': '50 50 50',
+     'steps': [{'inputs': [('PINA', 0x32)], 'iterations':5 },
+	{'inputs': [('PINB', 0x32)], 'iterations': 5},
+	{'inputs': [('PINC', 0x32)], 'iterations': 5} ],
+	'expected': [('PORTD', 0x95)],
     },
-    {'description': 'PINA: 0x07 => PORTC: 0x03',
-    'steps': [ {'inputs': [('PINA',0x07)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x03)],
-    },
-    {'description': 'PINA: 0x0F => PORTC: 0x84',
-    'steps': [ {'inputs': [('PINA',0x0F)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x84)],
-    },
-    {'description': 'PINA: 0x00 => PORTC: 0x00',
-    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x00)],
-    },
-    
+    {'description': '81 12 0',
+     'steps': [{'inputs': [('PINA', 0x51)], 'iterations':5 },
+	{'inputs': [('PINB', 0x0C)], 'iterations': 5},
+	{'inputs': [('PINC', 0x00)], 'iterations': 5} ],
+	'expected': [('PORTD', 0xBA)],
+    }
     ]
-watch = ['PORTC']
+watch = ['PORTD']
 
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need

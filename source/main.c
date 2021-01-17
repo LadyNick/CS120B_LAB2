@@ -14,21 +14,33 @@
 #endif
 
 int main(void) {
-	DDRA = 0x00; PORTA = 0xFF; // Configure port A's 8 pins as inputs
-	DDRB = 0x00; PORTB = 0xFF;
-	DDRC = 0x00; PORTC = 0xFF; // Configure port D's 8 pins as outputs, initialize to 0s
+	DDRA = 0x00; PINA = 0xFF; // Configure port A's 8 pins as inputs
+	DDRB = 0x00; PINB = 0xFF;
+	DDRC = 0x00; PINC = 0xFF; // Configure port D's 8 pins as outputs, initialize to 0s
 	DDRD = 0XFF; PORTD = 0x00;
 	unsigned char total = 0x00;
 while(1) {	
-		total = PORTA + PORTB + PORTC;
-		total = total << 5;
+		total = PINA + PINB + PINC;
+		
+		while(!(total >= 0x80)){
+		
+			total = total << 1;
+		}
+
+
 		PORTD = total;
 
-		if((PORTA - PORTC) > 0x50){
+		if((PINA - PINC) > 0x50){
 			PORTD = PORTD | (0x01 << 1);	
 		}
-		if((PORTA + PORB + PORC) > 0x80){
+		else{
+			PORTD = PORTD & ~(0x01 << 1);
+		}
+		if((PINA + PINB + PINC) > 0x80){
 			PORTD = PORTD | (0x01 << 0);
+		}
+		else{
+			PORTD = PORTD & ~(0x01 << 0);
 		}
 	}
 	return 0;
