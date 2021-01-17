@@ -30,7 +30,7 @@ while(1) {
 		// 2) Perform computation
 		//Where each pin is a parking space, PORTC should output binary number of available spots
 		
-		cntavail = tmpA0 + tmpA1 + tmpA2 + tmpA3;
+		cntavail = 0x04 - tmpA0 - tmpA1 - tmpA2 - tmpA3;
 		if(cntavail == 0x04){
 			cntavail = (cntavail | 0x01 << 7); 
 		}	
