@@ -24,13 +24,13 @@ int main(void) {
 while(1) {
 		// 1) Read input
 		tmpA0 = PINA & 0x01; //This gets the first bit, LSB
-                tmpA1 = (PINA & 0x02) >> 1; //This gets the second bit,
-	        tmpA2 = (PINA & 0x04) >> 2; //Gets 3rd
-		tmpA3 = (PINA & 0x08) >> 3; //Gets 4th
+                tmpA1 = ((PINA & 0x02) > 1); //This gets the second bit,
+	        tmpA2 = ((PINA & 0x04) > 1); //Gets 3rd
+		tmpA3 = ((PINA & 0x08) > 1); //Gets 4th
 		// 2) Perform computation
 		//Where each pin is a parking space, PORTC should output binary number of available spots
 		
-		cntavail = tmpA0 + tmpA1 + tmpA2 + tmpA3;
+		cntavail = 0x04 - tmpA0 - tmpA1 - tmpA2 - tmpA3;
 		
 		
 		// 3) Write output
